@@ -1,0 +1,30 @@
+---
+- name: require | base home dir
+  fail:
+    msg: "base_home_dir is not defined"
+  when: base_home_dir is not defined
+
+- name: require | base conf dir
+  fail:
+    msg: "base_conf_dir is not defined"
+  when: base_conf_dir is not defined
+
+- name: require | base lib dir
+  fail:
+    msg: "base_lib_dir is not defined"
+  when: base_lib_dir is not defined
+
+- name: require | base log dir
+  fail:
+    msg: "base_log_dir is not defined"
+  when: base_log_dir is not defined
+
+- name: require | base run dir
+  fail:
+    msg: "base_run_dir is not defined"
+  when: base_run_dir is not defined
+
+- name: require | download dir
+  fail:
+    msg: "download_dir is not defined"
+  when: download_dir is not defined

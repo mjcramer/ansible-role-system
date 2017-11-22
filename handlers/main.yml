@@ -1,0 +1,9 @@
+# playbooks/handlers/main.yml
+---
+- name: reload systemd
+  command: systemctl daemon-reload
+
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted

@@ -1,0 +1,12 @@
+---
+- import_tasks: require.yml
+  tags:
+    - require
+
+- import_tasks: apply.yml
+  tags:
+    - apply
+
+- import_tasks: configure.yml
+  tags:
+    - configure

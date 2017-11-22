@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Michael Cramer
+  description: Ansible role for system service handlers and logging
+  license: Unlicensed
+  min_ansible_version: 2.0
+  platforms:
+  - name: Ubuntu
+    versions:
+    - zesty
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags:
+    - system
+    - installer
