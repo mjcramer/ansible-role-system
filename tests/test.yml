@@ -2,5 +2,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - role: ../../ansible-role-system
+    - src: mjcramer-system
       sudo: yes

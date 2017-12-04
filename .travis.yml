@@ -14,15 +14,15 @@ install:
   - pip install ansible
 
 script:
-  # We'll add some commands to test the role here.
+  - "ansible-galaxy install mjcramer.system" 
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
-#  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
-#  # Run the role/playbook again, checking to make sure it's idempotent.
-#  - >
-#    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
-#    | grep -q 'changed=0.*failed=0'
-#    && (echo 'Idempotence: PASS' && exit 0)
-#    || (echo 'Idempotence: FAIL' && exit 1)
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence: PASS' && exit 0)
+    || (echo 'Idempotence: FAIL' && exit 1)
 
 notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/
