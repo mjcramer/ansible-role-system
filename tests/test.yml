@@ -2,5 +2,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - src: mjcramer-system
+    - src: mjcramer.system
       sudo: yes
