@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  remote_user: root
+  become: yes
   roles:
-    - src: mjcramer.system
-      sudo: yes
+    - mjcramer.system
