@@ -28,10 +28,3 @@
   fail:
     msg: "download_dir is not defined"
   when: download_dir is not defined
-
-- name: require | systemd
-   command: rpm -q rubygem2.1-rubygem-facter
-   ignore_errors: true
-   register: ch_rpm2
-   failed_when: ch_rpm2.rc > 1
-   changed_when: false
