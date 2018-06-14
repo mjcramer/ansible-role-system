@@ -21,6 +21,7 @@ services:
 before_install:
   # Make sure everything's up to date.
   - sudo apt-get update -qq
+  - mkdir travis
   - echo "Pulling docker images for ${distribution}:${version}..."
   - sudo docker pull ${distribution}:${version}
   - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
