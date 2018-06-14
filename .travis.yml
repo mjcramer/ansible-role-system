@@ -20,9 +20,9 @@ services:
 
 before_install:
   # Make sure everything's up to date.
-  - 'sudo apt-get update -qq'
-  - 'sudo docker pull ${distribution}:${version}'
-  - 'sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis'
+  - sudo apt-get update -qq
+  - sudo docker pull ${distribution}:${version}
+  - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis'
 
 install:
   # Install Ansible.
