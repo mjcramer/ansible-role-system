@@ -1,0 +1,7 @@
+FROM ubuntu:bionic
+
+RUN apt-get update && apt-get dist-upgrade -y 
+RUN pip install ansible 
+RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
+
+ENTRYPOINT ["/sbin/init"]

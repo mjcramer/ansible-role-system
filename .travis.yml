@@ -8,12 +8,12 @@ env:
     version: bionic
   - distribution: ubuntu
     version: xenial
-  - distribution: debian
-    version: stretch
-  - distribution: debian
-    version: jessie
-  - distribution: centos
-    version: 7
+#  - distribution: debian
+#    version: stretch
+#  - distribution: debian
+#    version: jessie
+#  - distribution: centos
+#    version: 7
 
 services:
   - docker
