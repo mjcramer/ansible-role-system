@@ -85,38 +85,17 @@ CDPATH="."
 # Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
 shopt -s cdable_vars
 
-# This function returns a string intended to be used in the prompt label. It reflects the status of the current directory if it's a git managed directory. 
-function prompt_text {
-    local git=$(which git)
-    if [ -n "$git" ]; then
-        status=$(git status --porcelain -b 2> /dev/null | awk '{ if ($1 == "##") { if (gsub(/\.\.\..*/,"",$2)) up = "^"; branch = $2 }; if ($1 ~ "[MDA]") mod = "*"  } END { printf "%s%s%s", branch, mod, up }')
-        if [ -n "$status" ]; then
-            echo "($status) "
-            return
-        fi
-    fi
-}
-
-# Returns a string intended for the shell title. Either the value of the TITLE variable or the current directory.
-function title_text {
-    if [ -n "$TITLE" ]; then
-        echo $TITLE
-    else 
-        echo $(basename $PWD)
-    fi
-}
-
 # Automatically trim long paths in the prompt (requires Bash 4.x)
 export PROMPT_DIRTRIM=2
 
 # Set the title and command prompts
 case $TERM in
     screen)
-        export PROMPT_COMMAND='echo -ne "\033k$(title_text)\033\\"'
+        export PROMPT_COMMAND='echo -ne "\033k$(basename $PWD)\033\\"'
         ;;
     *)
         hostname=`hostname -s`
-        export PROMPT_COMMAND='echo -ne "\033]0;[${hostname:0:7}] $(title_text)\007"'
+        export PROMPT_COMMAND='echo -ne "\033]0;[${hostname:0:7}] $(basename $PWD)\007"'
         ;;
 esac
 
@@ -224,15 +203,6 @@ alias l='ls -CF --color=auto'
 alias l.='ls -d --color=auto .*'
 alias listening='ss -tlpn'
 alias vi=vim
-
-#	alias ipt='sudo /sbin/iptables'
-#	alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
-#	alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
-#	alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
-#	alias iptlistfw='sudo /sbin/iptables -L FORWORD -n -v --line-numbers'
-#	alias header='curl -I'
-#	alias headerc='curl -I --compress'
-#	alias root='sudo -i'
 
 alias meminfo='free -m -l -t'
 alias psmem='ps auxf | sort -nr -k 4'
