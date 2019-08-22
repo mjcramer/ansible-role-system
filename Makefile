@@ -1,14 +1,14 @@
 
 export CACHE := $(shell pwd)/.cache
 export ANSIBLE_PLAYBOOK_OPTS := \
-	--vault-password-file=.ansible-vault-password \
-	--extra-vars=cache=${CACHE}
+	--vault-password-file .ansible-vault-password \
+	--extra-vars cache=${CACHE}
 export ANSIBLE_CONFIG := tests/ansible.cfg 
 
 ifdef DISTROS
-	ANSIBLE_PLAYBOOK_OPTS += --extra-vars=distros=$(DISTROS)
+	ANSIBLE_PLAYBOOK_OPTS += --extra-vars distros=$(DISTROS)
 else
-	ANSIBLE_PLAYBOOK_OPTS += --extra-vars=distros=ubuntu,debian,fedora
+	ANSIBLE_PLAYBOOK_OPTS += --extra-vars distros=ubuntu,debian,fedora
 endif
 
 ifdef ADD_ANSIBLE_PLAYBOOK_OPTS

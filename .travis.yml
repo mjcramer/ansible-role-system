@@ -10,7 +10,7 @@ before_install:
 install:
 - pip3 install ansible pyopenssl cryptography
 before_script:
-- make setup
+- make setup ADD_ANSIBLE_PLAYBOOK_OPTS="--extra-vars host_name=ansible-system-travis-$TRAVIS_JOB_ID"
 script:
 - make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
 - make install
