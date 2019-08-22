@@ -1,6 +1,7 @@
 System
 ======
 [![Build Status](https://travis-ci.org/mjcramer/ansible-role-system.svg?branch=master)](https://travis-ci.org/mjcramer/ansible-role-system) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-mjcramer.system-green.svg)](https://galaxy.ansible.com/mjcramer/system/) 
+
 An ansible role for system service handlers and configuring logging
 
 Requirements
