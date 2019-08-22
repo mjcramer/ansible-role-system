@@ -2,8 +2,7 @@ dist: bionic
 language: python
 python: '3.7'
 env:
-- JVM_PROVIDER=openjdk JAVA_VERSION=8 DISTROS=ubuntu,debian,fedora
-- JVM_PROVIDER=openjdk JAVA_VERSION=11 DISTROS=ubuntu,fedora
+- DISTROS=ubuntu,debian,fedora
 before_install:
 - openssl aes-256-cbc -K $encrypted_ae4a4597577a_key -iv $encrypted_ae4a4597577a_iv
   -in .ansible-vault-password.enc -out .ansible-vault-password -d
