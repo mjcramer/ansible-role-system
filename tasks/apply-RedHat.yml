@@ -1,0 +1,5 @@
+# apply-RedHat.yml
+---
+- name: system | update yum cache
+  yum:
+    update_cache: yes

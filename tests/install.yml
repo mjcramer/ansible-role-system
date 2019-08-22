@@ -1,0 +1,38 @@
+---
+- name: wait for machines to boot
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: wait for ssh on instances
+      wait_for:
+        delay: 1
+        host: "{{ item }}"
+        port: 22
+        state: started
+        timeout: 60
+      loop: "{{ hostvars | dict2items | map(attribute='value.ansible_ssh_host') | list }}"
+
+#
+# TODO: This doesn't work because the scl program is actually a shell that enables what you 
+#       specify, in this case, python. Until Centos enables python3, we're not gonna support.
+#
+# - name: add python3 to centos
+#   hosts: centos
+#   gather_facts: no
+
+#   tasks:
+#     - raw: yum install -y centos-release-scl
+#     - raw: yum install -y rh-python36
+#     - raw: scl enable rh-python36 sh
+
+- name: apply role to instance
+  hosts: system_hosts
+
+  vars_files:
+    - common.yml
+
+  roles:
+    - role: ../../ansible-role-system
+      become: yes

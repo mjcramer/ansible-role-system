@@ -146,9 +146,9 @@ b_pur='\033[45m'   # Purple
 b_cyn='\033[46m'   # Cyan
 b_wht='\033[47m'   # White
 # Primary prompt
-PS1='\['$f_wht_i'\]\D{%H:%M:%S}\['$reset'\] \['$f_grn_b'\](\u@\h)\['$reset'\] \['$f_mag_b'\][\w]\['$reset'\] '
+PS1='\['$f_cyn_i'\]\D{%a %b %d %H:%M:%S}\['$reset'\] \['$f_grn_b'\](\u@\h)\['$reset'\] \['$f_mag_b'\][\w]\['$reset'\] '
 # Prompt for incomplete input (like when you forget closing quotes)
-PS2='\['$f_wht_i'\]\D{%H:%M:%S}\['$reset'\] \['$f_blk'\]\['$b_blk'\](\u@\h) [\w]\['$reset'\] '
+PS2='\['$f_cyn_i'\]\D{%a %b %d %H:%M:%S}\['$reset'\] \['$f_blk'\]\['$b_blk'\](\u@\h) [\w]\['$reset'\] '
 # Prompt for 'select' command
 #PS3=
 # Prompt for execution traces (default '+' sign)

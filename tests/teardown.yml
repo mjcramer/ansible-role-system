@@ -1,0 +1,51 @@
+---
+- name: create hosts for role test
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars_files:
+    - common.yml
+
+  tasks:
+    - name: check cache dir
+      stat:
+        path: "{{ cache_dir }}"
+      register: cache_check
+
+    - fail:
+        msg: No cache dir present, nothing to tear down.
+      when: not cache_check.stat.exists
+
+- name: create hosts for role test
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars:
+    droplet_ids: "{{ lookup('file', cache_dir + '/droplet_ids') | from_json }}"
+    ssh_key_fingerprint: "{{ lookup('file', cache_dir + '/ssh_key_fingerprint') | from_json }}"
+
+  vars_files:
+    - common.yml
+    - secret.yml
+
+  tasks:
+    - name: destroy droplet
+      digital_ocean_droplet:
+        state: absent
+        id: "{{ item }}"
+        oauth_token: "{{ digitalocean_api_key }}"
+        wait_timeout: 500
+      loop: "{{ droplet_ids }}"
+
+    - name: delete ssh key
+      digital_ocean_sshkey:
+        state: absent
+        fingerprint: "{{ ssh_key_fingerprint }}"
+        oauth_token: "{{ digitalocean_api_key }}"
+
+    - name: destroy cache directory
+      file:
+        path: "{{ cache_dir }}"
+        state: absent

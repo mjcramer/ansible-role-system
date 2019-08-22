@@ -1,4 +1,6 @@
 ---
+- include_tasks: apply-{{ ansible_os_family }}.yml
+
 - name: apply | install packages
   package:
     name: "{{ item }}"
@@ -16,3 +18,4 @@
     - iperf
     - vim
     - nmap
+    - rsyslog

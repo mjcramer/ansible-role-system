@@ -28,3 +28,18 @@
   fail:
     msg: "download_dir is not defined"
   when: download_dir is not defined
+
+- name: require | base script dir
+  fail:
+    msg: "base_script_dir is not defined"
+  when: base_script_dir is not defined
+
+- name: require | base daemon dir
+  fail:
+    msg: "base_daemon_dir is not defined"
+  when: base_daemon_dir is not defined
+
+- name: require | base data dir
+  fail:
+    msg: "base_data_dir is not defined"
+  when: base_data_dir is not defined

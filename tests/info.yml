@@ -1,0 +1,35 @@
+---
+- name: show info
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars_files:
+    - secret.yml
+
+  tasks:
+    - name: list available regions
+      digital_ocean_region_facts:
+        oauth_token: "{{ digitalocean_api_key }}"
+      register: regions
+
+    - debug:
+        msg: "{{ regions.data | map(attribute='slug') | list }}"
+
+    - name: list distribution images
+      digital_ocean_image_facts:
+        image_type: distribution
+        oauth_token: "{{ digitalocean_api_key }}"
+      register: distro
+
+    - debug:
+        msg: "{{ distro.data | map(attribute='slug') | list }}"
+
+    - name: list available sizes
+      digital_ocean_size_facts:
+        oauth_token: "{{ digitalocean_api_key }}"
+      register: sizes
+
+    - debug:
+        msg: "{{ sizes.data | map(attribute='slug') | list }}"
+

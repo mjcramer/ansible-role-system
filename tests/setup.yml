@@ -1,0 +1,81 @@
+---
+- name: create hosts for role test
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars_files:
+    - common.yml
+    - secret.yml
+
+  vars:
+    os_images:
+      ubuntu: ubuntu-18-04-x64
+      debian: debian-9-x64
+      fedora: fedora-30-x64
+      centos: centos-7-x64
+
+  tasks:
+    - fail:
+        msg: Please set distros={{ os_images.keys() | join(',') }} and run again
+      when: distros is not defined
+
+    - name: create cache directory
+      file:
+        path: "{{ cache_dir }}"
+        state: directory
+        mode: 0755
+
+    - name: create private directory
+      file:
+        path: "{{ private_dir }}"
+        state: directory
+        mode: 0700
+
+    - openssh_keypair:
+        path: "{{ ssh_private_key_file }}"
+        size: 2048
+      register: keypair
+
+    - name: register ssh key
+      digital_ocean_sshkey:
+        oauth_token: "{{ digitalocean_api_key }}"
+        name: "{{ ssh_key_name }}"
+        ssh_pub_key: "{{ keypair.public_key }}"
+        state: present
+      register: ssh_key
+
+    - name: create droplets
+      digital_ocean_droplet:
+        state: present
+        name: "{{ host_name }}-{{ item }}"
+        unique_name: no
+        size: 2gb
+        region: sfo2
+        image: "{{ os_images[item] }}"
+        ssh_keys: 
+        - "{{ ssh_key.data.ssh_key.id }}"
+        oauth_token: "{{ digitalocean_api_key }}"
+        wait_timeout: 500
+        monitoring: no
+        tags:
+          - "{{ item }}"
+      loop: "{{ distros.split(',') }}"
+      register: droplets
+        
+    - name: save variables
+      copy:
+        content: "{{ item.value | to_nice_json }}" 
+        dest: "{{ cache }}/{{ item.key }}"
+      with_items:
+      - key: droplet_ids
+        value: "{{ droplets.results | map(attribute='data.droplet.id') | list }}"
+      - key: ssh_key_fingerprint
+        value: "{{ ssh_key.data.ssh_key.fingerprint }}"
+  
+    - name: write inventory
+      template:
+        src: inventory.yml.j2
+        dest: "{{ cache_dir }}/inventory.yml"
+
+
