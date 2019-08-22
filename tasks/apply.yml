@@ -28,5 +28,5 @@
 - name: apply | set ssh banner
   lineinfile:
     dest: "/etc/ssh/sshd_config"
-    regexp: '\s*#*\s*banner=.*'
-    line: "banner=/etc/ssh/banner"
+    regexp: '\s*#*\s*Banner .*'
+    line: "Banner /etc/ssh/banner"
