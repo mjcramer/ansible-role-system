@@ -19,3 +19,14 @@
     - vim
     - nmap
     - rsyslog
+
+- name: apply | upload ssh banner
+  copy:
+    src: banner
+    dest: "/etc/ssh/banner"
+
+- name: apply | set ssh banner
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: '\s*#*\s*banner=.*'
+    line: "banner=/etc/ssh/banner"
