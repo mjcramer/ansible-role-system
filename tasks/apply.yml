@@ -30,3 +30,5 @@
     dest: "/etc/ssh/sshd_config"
     regexp: '\s*#*\s*Banner .*'
     line: "Banner /etc/ssh/banner"
+  notify:
+    - restart sshd
