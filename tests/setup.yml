@@ -11,7 +11,7 @@
   vars:
     os_images:
       ubuntu: ubuntu-18-04-x64
-      debian: debian-9-x64
+      debian: debian-10-x64
       fedora: fedora-30-x64
       centos: centos-7-x64
 
