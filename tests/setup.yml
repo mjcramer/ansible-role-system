@@ -78,4 +78,3 @@
       template:
         src: inventory.yml.j2
         dest: "{{ cache_dir }}/inventory.yml"
-	
