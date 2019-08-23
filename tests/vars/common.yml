@@ -1,12 +1,11 @@
 ---
-host_name: test-ansible-system
 cache_dir: "{{ cache | default('cache') }}"
 private_dir: "{{ cache_dir }}/private"
 ssh_key_name: build_key
 ssh_private_key_file: "{{ private_dir }}/{{ ssh_key_name }}"
 ssh_public_key_file: "{{ ssh_private_key_file }}.pub"
 
-download_dir: /tmp
+download_dir: /var/cache
 base_home_dir: /opt
 base_conf_dir: /etc
 base_log_dir: /var/log

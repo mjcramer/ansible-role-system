@@ -32,6 +32,7 @@
 
   vars_files:
     - common.yml
+    - vars/local.yml
 
   roles:
     - role: ../../ansible-role-system

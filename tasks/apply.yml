@@ -19,6 +19,7 @@
     - vim
     - nmap
     - rsyslog
+    - python3-pip
 
 - name: apply | upload ssh banner
   copy:

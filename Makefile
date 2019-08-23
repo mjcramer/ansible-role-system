@@ -15,7 +15,7 @@ ifdef ADD_ANSIBLE_PLAYBOOK_OPTS
 	ANSIBLE_PLAYBOOK_OPTS += ${ADD_ANSIBLE_PLAYBOOK_OPTS}
 endif
 
-.PHONY: setup teardown ping
+.PHONY: setup teardown ip ping
 
 setup:
 	ANSIBLE_CONFIG=${ANSIBLE_CONFIG} ansible-playbook \
@@ -29,10 +29,17 @@ teardown:
 		--inventory localhost, \
 		tests/teardown.yml
 
+ip:
+	ANSIBLE_CONFIG=${ANSIBLE_CONFIG} ansible \
+		--inventory ${CACHE}/inventory.yml \
+		--module-name debug --args var=ansible_ssh_host \
+		all
+
 ping:
 	ANSIBLE_CONFIG=${ANSIBLE_CONFIG} ansible \
 		--inventory ${CACHE}/inventory.yml \
-		-m ping all
+		--module-name ping \
+		all
 
 %: 
 	ANSIBLE_CONFIG=${ANSIBLE_CONFIG} ansible-playbook \

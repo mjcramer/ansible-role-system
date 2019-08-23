@@ -5,7 +5,7 @@
   connection: local
 
   vars_files:
-    - common.yml
+    - vars/common.yml
 
   tasks:
     - name: check cache dir
@@ -27,8 +27,8 @@
     ssh_key_fingerprint: "{{ lookup('file', cache_dir + '/ssh_key_fingerprint') | from_json }}"
 
   vars_files:
-    - common.yml
-    - secret.yml
+    - vars/common.yml
+    - vars/secret.yml
 
   tasks:
     - name: destroy droplet

@@ -5,8 +5,9 @@
   connection: local
 
   vars_files:
-    - common.yml
-    - secret.yml
+    - vars/common.yml
+    - vars/local.yml
+    - vars/secret.yml
 
   vars:
     os_images:
@@ -49,7 +50,7 @@
       digital_ocean_droplet:
         state: present
         name: "{{ host_name }}-{{ item }}"
-        unique_name: no
+        unique_name: yes
         size: 2gb
         region: sfo2
         image: "{{ os_images[item] }}"
@@ -62,7 +63,7 @@
           - "{{ item }}"
       loop: "{{ distros.split(',') }}"
       register: droplets
-        
+
     - name: save variables
       copy:
         content: "{{ item.value | to_nice_json }}" 
@@ -72,10 +73,9 @@
         value: "{{ droplets.results | map(attribute='data.droplet.id') | list }}"
       - key: ssh_key_fingerprint
         value: "{{ ssh_key.data.ssh_key.fingerprint }}"
-  
+
     - name: write inventory
       template:
         src: inventory.yml.j2
         dest: "{{ cache_dir }}/inventory.yml"
-
-
+	

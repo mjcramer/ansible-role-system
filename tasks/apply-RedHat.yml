@@ -1,5 +1,8 @@
 # apply-RedHat.yml
 ---
+- name: system | install python3
+  raw: yum install -y python3
+
 - name: system | update yum cache
   yum:
     update_cache: yes
