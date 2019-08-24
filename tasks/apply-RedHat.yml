@@ -2,6 +2,7 @@
 ---
 - name: system | install python3
   raw: yum install -y python3
+  changed_when: no
 
 - name: system | update yum cache
   yum:
