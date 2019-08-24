@@ -31,7 +31,7 @@
   hosts: system_hosts
 
   vars_files:
-    - common.yml
+    - vars/common.yml
     - vars/local.yml
 
   roles:
