@@ -1,6 +1,10 @@
 dist: bionic
 language: python
 python: '3.7'
+
+services:
+  - docker
+  
 env:
   - DISTROS=ubuntu,debian,fedora
 
