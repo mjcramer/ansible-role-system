@@ -2,20 +2,17 @@ dist: bionic
 language: python
 python: '3.7'
 env:
-- DISTROS=ubuntu,debian,fedora
+  - DISTROS=ubuntu,debian,fedora
+
 before_install:
-- openssl aes-256-cbc -K $encrypted_ae4a4597577a_key -iv $encrypted_ae4a4597577a_iv
-  -in .ansible-vault-password.enc -out .ansible-vault-password -d
-- sudo apt-get update -qq
+  - openssl aes-256-cbc -K $encrypted_ae4a4597577a_key -iv $encrypted_ae4a4597577a_iv -in .ansible-vault-password.enc -out .ansible-vault-password -d
+  - sudo apt-get update -qq
+
 install:
-- pip3 install ansible pyopenssl cryptography
-before_script:
-- make setup ADD_ANSIBLE_PLAYBOOK_OPTS="--extra-vars host_name=ansible-system-travis-$TRAVIS_JOB_ID"
+  - pip3 install -r requirements.txt
+
 script:
-- make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
-- make install
-- 'make install 2>/dev/null | ./tests/idempotence_check.sh'
-after_script:
-- make teardown
+  - molecule test
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
