@@ -5,21 +5,7 @@
   package:
     name: "{{ item }}"
     state: present
-  with_items:
-    - unzip
-    - tar
-    - wget
-    - ntp
-    - htop
-    - bash-completion
-    - screen
-    - tree
-    - jq
-    - iperf
-    - vim
-    - nmap
-    - rsyslog
-    - python3-pip
+  with_items: "{{ packages[ansible_os_family] }}"
 
 - name: apply | upload ssh banner
   copy:

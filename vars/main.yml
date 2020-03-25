@@ -1,0 +1,32 @@
+# ansible-role-system/vars/main.yml
+---
+packages:
+  
+  RedHat:
+    - unzip
+    - tar
+    - wget
+    - ntp
+    - bash-completion
+    - screen
+    - tree
+    - vim
+    - nmap
+    - rsyslog
+    - python3-pip
+
+  Debian:
+    - unzip
+    - tar
+    - wget
+    - ntp
+    - htop
+    - bash-completion
+    - screen
+    - tree
+    - jq
+    - iperf
+    - vim
+    - nmap
+    - rsyslog
+    - python3-pip
