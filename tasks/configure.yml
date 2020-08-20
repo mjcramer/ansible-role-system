@@ -4,6 +4,7 @@
   copy:
     src: rsyslog.conf
     dest: /etc/rsyslog.d/51-ansible.conf
+    mode: 600
   notify:
     - restart rsyslog
 
@@ -24,3 +25,4 @@
   copy:
     src: global.sh
     dest: /etc/profile.d/global.sh
+    mode: 600

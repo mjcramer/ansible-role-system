@@ -1,21 +1,29 @@
----
 dependency:
   name: galaxy
 
 driver:
-  name: docker
-
-lint:
-  name: yamllint
+  name: vagrant
+  provider:
+    name: vbox
 
 platforms:
-  - name: centos-7
-    image: centos:7
-  - name: ubuntu-18.04
-    image: ubuntu:18.04
+#  - name: centos-8
+#    box: centos/8
+#    memory: 4096
+#    cpus: 1
+
+#  - name: ubuntu-focal64
+#    box: ubuntu/focal64
+#    memory: 4096
+#    cpus: 1
+
+  - name: ubuntu-bionic64
+    box: ubuntu/bionic64
+    memory: 4096
+    cpus: 1
 
 provisioner:
   name: ansible
-    
+
 verifier:
-  name: testinfra
+  name: ansible

@@ -1,9 +1,11 @@
 # apply-RedHat.yml
 ---
 - name: system | install python3
-  raw: yum install -y python3
+  raw: dnf install -y python3
   changed_when: no
 
-- name: system | update yum cache
-  yum:
+- name: upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
     update_cache: yes

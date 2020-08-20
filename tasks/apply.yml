@@ -11,6 +11,7 @@
   copy:
     src: banner
     dest: "/etc/ssh/banner"
+    mode: 600
 
 - name: apply | set ssh banner
   lineinfile:
