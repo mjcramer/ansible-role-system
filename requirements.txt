@@ -1,0 +1,6 @@
+ansible
+molecule
+molecule-vagrant
+molecule-gce
+molecule-azure
+molecule-ec2
