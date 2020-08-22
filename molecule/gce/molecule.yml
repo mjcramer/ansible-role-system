@@ -1,0 +1,18 @@
+---
+dependency:
+  name: galaxy
+  enabled: False
+
+driver:
+  name: gce
+platforms:
+  - name: ubuntu-bionic64
+
+  - name: debian-buster64
+
+  - name: centos-8
+
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

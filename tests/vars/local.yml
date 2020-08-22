@@ -1,3 +1,0 @@
----
-host_name: ansible-system-{{ host_name_suffix | default(lookup('env','USER') | default('dev')) }}
-

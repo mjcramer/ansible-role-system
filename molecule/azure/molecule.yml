@@ -1,0 +1,20 @@
+---
+dependency:
+  name: galaxy
+  enabled: no
+
+driver:
+  name: azure
+
+platforms:
+  - name: UbuntuServer                          Canonical    18.04-LTS
+
+  - name: debian-10
+
+  - name: centos-8
+
+provisioner:
+  name: ansible
+
+verifier:
+  name: ansible

@@ -1,6 +1,0 @@
-ansible
-molecule
-molecule[docker]
-molecule[vagrant]
-molecule[gce]
-molecule[az]

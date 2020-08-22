@@ -1,8 +1,8 @@
 # ansible-role-system/tasks/apply-Debian.yml
 ---
-- name: apply | install python3
-  raw: apt install -y python3
-  changed_when: no
+#- name: apply | install python3
+#  raw: apt install -y python3
+#  changed_when: no
 
 - name: apply | update apt cache
   apt:

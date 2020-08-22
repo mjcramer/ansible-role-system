@@ -1,8 +1,8 @@
 # apply-RedHat.yml
 ---
-- name: system | install python3
-  raw: dnf install -y python3
-  changed_when: no
+#- name: system | install python3
+#  raw: dnf install -y python3
+#  changed_when: no
 
 - name: upgrade all packages
   dnf:
